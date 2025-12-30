@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-monitor-toolkit"
+version = "1.0.0"
+description = "A comprehensive cross-platform system resource monitoring toolkit"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "System Monitor Team", email = "contact@example.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Monitoring",
+]
+
+requires-python = ">=3.6"
+dependencies = [
+    "psutil>=5.8.0",
+    "tabulate>=0.8.9",
+]
+
+[project.optional-dependencies]
+gpu = ["gputil>=1.4.0"]
+web = ["flask>=2.0.0"]
+full = ["gputil>=1.4.0", "flask>=2.0.0", "dash>=2.0.0"]
+dev = ["pytest", "black", "flake8", "mypy", "sphinx"]
+
+[project.scripts]
+sysmon = "system_monitor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["system_monitor*"]
+exclude = ["tests*", "examples*", "docs*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py36', 'py37', 'py38', 'py39', 'py310', 'py311', 'py312', 'py313', 'py314']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.6"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
